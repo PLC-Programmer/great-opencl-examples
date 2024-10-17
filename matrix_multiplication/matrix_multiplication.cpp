@@ -1,4 +1,8 @@
-#include <CL/cl.hpp>
+// rev.2024-10-17
+
+// #include <CL/cl.hpp>  // too old for OpenCL 3.0, 2024-10-17
+#include <CL/opencl.hpp>
+
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -188,7 +192,13 @@ void initializeDevice(){
      * Compile kernel program which will run on the device.
      * */
 
-    cl::Program::Sources sources(1, std::make_pair(src.c_str(), src.length() + 1));
+    // 2024-10-17: no longer working for OpenCL 3.0
+    // cl::Program::Sources sources(1, std::make_pair(src.c_str(), src.length() + 1));
+    // instead do this:
+    cl::Program::Sources sources;
+    sources.push_back({src.c_str(), src.length()});
+    // source: https://ulhpc-tutorials.readthedocs.io/en/latest/gpu/opencl/
+  
     context = cl::Context(device);
     program = cl::Program(context, sources);
     
