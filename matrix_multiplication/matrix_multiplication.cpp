@@ -1,5 +1,7 @@
 // rev.2024-10-17
 
+#define CL_HPP_TARGET_OPENCL_VERSION 300  // 2024-10-17
+
 // #include <CL/cl.hpp>  // too old for OpenCL 3.0, 2024-10-17
 #include <CL/opencl.hpp>
 
